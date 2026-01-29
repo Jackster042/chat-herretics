@@ -2,6 +2,13 @@ import express from "express";
 import cors from "cors"
 import path from "path" 
 
+import { errorHandler } from "./middlewares/error-handler";
+
+import authRoutes from "./routes/auth-routes";
+import chatRoutes from "./routes/chat-routes";
+import messageRoutes from "./routes/message-routes";
+import userRoutes from "./routes/user-routes";
+
 const app = express()
 
 const allowedOrigins = [
@@ -21,10 +28,13 @@ app.get("/health", (req, res) => {
     res.status(200).json({ status: "ok", message: "✅ Server is running" });
 })
 
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.error(err.message);
-    res.status(500).json({ status: "error", message: err.message });
-});
+// Routes
+app.use("/api/auth", authRoutes)
+app.use("/api/chats", chatRoutes)
+app.use("/api/messages", messageRoutes)
+app.use("/api/users", userRoutes)
+
+app.use(errorHandler);
 
 if(process.env.NODE_ENV === "production"){
      app.use(express.static(path.join(__dirname, "../../web/dist")));
