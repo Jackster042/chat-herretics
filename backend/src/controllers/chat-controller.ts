@@ -17,7 +17,7 @@ export async function getChats(req:AuthRequest, res:Response, next:NextFunction)
 
             return {
                 _id: chat._id,
-                otherParticipant: otherParticipant ?? null,
+                participant: otherParticipant ?? null,
                 lastMessage: chat.lastMessage,
                 lastMessageAt: chat.lastMessageAt,
                 createdAt: chat.createdAt,
