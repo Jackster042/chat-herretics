@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors"
 import path from "path" 
 
+import { clerkMiddleware } from "@clerk/express"; 
 import { errorHandler } from "./middlewares/error-handler";
 
 import authRoutes from "./routes/auth-routes";
@@ -16,6 +17,8 @@ const allowedOrigins = [
       "http://localhost:5173", // vite web devs
        process.env.FRONTEND_URL || "", // production
 ].filter(Boolean) as string[];
+
+app.use(clerkMiddleware());
 
 app.use(cors({
     origin: allowedOrigins,
