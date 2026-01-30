@@ -8,6 +8,10 @@ import { Message } from "../models/Message";
 export const onlineUsers: Map<string, string> = new Map()
 
 export const initializeSocket = (httpServer: HttpServer ) => {
+    if(!process.env.CLERK_SECRET_KEY) {
+        console.error("CLERK_SECRET_KEY is not set");
+        process.exit(1);
+    }
   const allowedOrigins = [
       "http://localhost:8081", // expo mobile
       "http://localhost:5173", // vite web devs
