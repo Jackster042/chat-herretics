@@ -16,8 +16,9 @@ backend/          - Express API server
     models/       - Mongoose models (User, Chat, Message)
     routes/       - Express routes
     scripts/      - Utility scripts (seed.ts)
+    utils/        - Utilities (socket.ts)
+  types/          - TypeScript type declarations
   index.ts        - Entry point
-  utils/          - Utilities (socket.ts)
 
 web/              - React web frontend
   src/
@@ -158,7 +159,7 @@ No test framework is currently configured. To add tests:
 3. **Mobile Path Aliases**: Mobile project uses `@/` alias mapped to root.
 4. **Strict TypeScript**: All projects use strict mode with comprehensive type checking.
 5. **Clerk Auth**: Backend uses @clerk/express for authentication middleware.
-6. **Socket.io**: Real-time messaging support via `backend/utils/socket.ts`.
+6. **Socket.io**: Real-time messaging support via `backend/src/utils/socket.ts` (see docs/SOCKET.md for detailed documentation).
 7. **CORS**: Backend configured for multiple origins (Expo, Vite dev, production).
 
 ## Running the Full Stack
