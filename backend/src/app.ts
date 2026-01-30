@@ -34,14 +34,15 @@ app.use("/api/chats", chatRoutes)
 app.use("/api/messages", messageRoutes)
 app.use("/api/users", userRoutes)
 
-app.use(errorHandler);
-
+// Production: Serve static files from dist directory
 if(process.env.NODE_ENV === "production"){
-     app.use(express.static(path.join(__dirname, "../../web/dist")));
-
+    app.use(express.static(path.join(__dirname, "../../web/dist")));
+    
     app.get("/*", (_, res) => {
-    res.sendFile(path.join(__dirname, "../../web/dist/index.html"));
-  });
+        res.sendFile(path.join(__dirname, "../../web/dist/index.html"));
+    });
 }
+
+app.use(errorHandler);
 
 export default app;

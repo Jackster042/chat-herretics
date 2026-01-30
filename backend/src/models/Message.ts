@@ -24,10 +24,7 @@ const MessageSchema = new Schema({
         required: true,
         trim: true,
     },
-    createdAt: {
-        type: Date,
-    }
-})
+}, { timestamps: true });
 
 MessageSchema.index({ chat: 1, createdAt: 1 });
 
